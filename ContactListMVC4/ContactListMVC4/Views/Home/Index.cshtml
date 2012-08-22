@@ -1,0 +1,91 @@
+﻿@section scripts {
+
+    <link href="../../Content/styles.css" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Scripts/knockout-2.1.0.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/knockout.mapping-latest.js")" type="text/javascript"></script>    
+}
+
+
+<header>
+    <div class="content-wrapper">
+        <div class="float-left">
+            <p class="site-title">
+                <a href="~/">Contacts List Web API Test</a></p>
+        </div>
+    </div>
+</header>
+<div id="body">
+    <table class="list" cellpadding="5" cellspacing="1">
+        <thead>
+            <tr class="head">
+                <th>
+                    Name
+                </th>
+                <th>
+                    City
+                </th>
+                <th>
+                    Contact
+                </th>
+                <th>
+
+                </th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Contacts">
+            <tr  class="row" data-bind="css: { editing: isEditing }">
+                <td class="boldtext">
+                    <span data-bind="text:Name"></span>
+                </td>
+                <td>
+                    <span data-bind="text: City"></span>
+                </td>
+                <td>
+                    <span data-bind="text: Phone"></span>
+                </td>
+                <td>
+                    <a href="#" data-bind="click: $parent.removeContact">Delete</a>
+
+                    <a href="#" data-bind="click: startEdit">Edit</a>
+                </td>
+            </tr>
+            <tr  class="row" data-bind="visible: isEditing">
+                <td>
+                    First Name:<input data-bind="value: FirstName" />
+                    Last Name:<input data-bind="value: LastName" />                    
+                </td>
+                <td>
+                    City:<input data-bind="value: City" />
+                </td>
+                <td>
+                    <input data-bind="value: Phone" />
+                </td>
+                <td>
+                    <a href="#" data-bind="click: updateContact">Done</a>
+                </td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <form data-bind="submit: addContact">
+            <tr class="row">
+                <td>
+                    First Name:<input data-bind="value: FirstName" />
+                    Last Name:<input data-bind="value: LastName" />                    
+                </td>
+                <td>
+                    <input data-bind="value: City" />
+                </td>
+                <td>
+                    <input data-bind="value: Phone" />
+                </td>
+                <td>
+                    <input type="submit" value="Add" />
+                </td>
+            </tr>
+            </form>
+        </tfoot>
+    </table>
+
+    <script src="../../Scripts/contact.js" type="text/javascript"></script>
+</div>
+
